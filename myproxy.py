@@ -1,12 +1,15 @@
 from flask import Flask
 from flask import request
+import requests
+
 app = Flask(__name__)
-@app.route('/', methods =['GET','POST'])
+
+@app.route("/", methods =['GET'])
 def hello_world():
 	msg="Hello IVT-17!"
 	if request.args.get('url'):
 		try:
-			r=request.get(request.args['url'])
+			r=requests.get(request.args['url'])
 			if r.status_code==200:
 				return r.content
 		except:
